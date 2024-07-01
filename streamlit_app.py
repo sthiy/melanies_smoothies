@@ -30,6 +30,8 @@ if ingredients_list:
     ingredients_string = ' '.join(ingredients_list)
     
     for fruit in ingredients_list:
+        st.text(fruit)
+        
         fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{fruit}")
         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
 

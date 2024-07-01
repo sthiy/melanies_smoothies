@@ -1,5 +1,6 @@
 # Import python packages
 import streamlit as st
+import requests
 from snowflake.snowpark.functions import col;
 
 # Write directly to the app
@@ -10,6 +11,8 @@ st.write(
     """
 )
 
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
 
 #option = st.selectbox(
 #    "What's your favorite fruit?",

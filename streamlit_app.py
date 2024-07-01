@@ -4,7 +4,7 @@ import requests
 from snowflake.snowpark.functions import col;
 
 # Write directly to the app
-st.title(":cup_with_straw: Super smoothies order form")
+st.title(":cup_with_straw: Super smoothies order form :cup_with_straw:")
 st.write(
     """
     Choose your fruits and stuff.
@@ -15,6 +15,7 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon"
 #st.text(fruityvice_response.json())
 fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
 
+st.text("bonjour")
 
 #option = st.selectbox(
 #    "What's your favorite fruit?",

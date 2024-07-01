@@ -22,7 +22,7 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('fruit
 
 pd_df = my_dataframe.to_pandas()
 st.dataframe(pd_df)
-st.stop()
+# st.stop()
 ingredients_list = st.multiselect("Choose up to 5 fruits", my_dataframe, max_selections=5)
 
 ingredients_string = ''
@@ -35,8 +35,8 @@ if ingredients_list:
     
     for fruit in ingredients_list:
         st.text(fruit)
-        
-        fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{fruit}")
+        search_on = pd_df.loc(pd_df["FRUIT_NAME"] == fruit, 'SEARCH_ON').iloc[0]
+        fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{search_on}")
         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
 
     my_insert_stmt = f"insert into smoothies.public.orders (ingredients, name_on_order) values ('{ingredients_string}', '{name_on_order}')"
